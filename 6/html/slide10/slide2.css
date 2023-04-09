@@ -1,0 +1,72 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+.background {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	z-index: 1;
+}
+
+.video {
+	position: absolute;
+	top: 191px;
+	width: 1024px;
+	height: 576px;
+	z-index: 2;
+}
+
+.refer {
+  position: absolute;
+  left: 502px;
+  top: 135px;
+  width: 42px;
+  height: 40px;
+  z-index: 5;
+}
+
+.link7 {
+  position: absolute;
+  left: 869px;
+  top: 678px;
+  width: 71px;
+  height: 85px;
+  z-index: 5;
+}
+
+.link8 {
+  position: absolute;
+  left: 937px;
+  top: 678px;
+  width: 71px;
+  height: 85px;
+  z-index: 5;
+}
+
+
+.popup {
+  position: absolute;
+  width: 1024px;
+  height: 768px;
+  display: none;
+  z-index: 15;
+}
+
+.pop_open {
+	position: absolute;
+  left: 468px;
+  top: 117px;
+  width: 105px;
+  height: 73px;
+	z-index: 10;
+}
+
+.pop_close {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	display: none;
+	z-index: 20;
+}
