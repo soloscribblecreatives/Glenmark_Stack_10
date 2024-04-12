@@ -1,0 +1,136 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+.background {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	z-index: 1;
+}
+
+.s1_1 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	z-index: 1;
+}
+
+.s1_2 {
+	position: absolute;
+  left: 361px;
+  top: 305px;
+  width: 81px;
+  height: 82px;
+	animation: pulse 1s infinite;
+	animation-delay: 0s;
+	animation-fill-mode: both;
+	z-index: 5;
+}
+
+.s1_3 {
+	position: absolute;
+  left: 299px;
+  top: 409px;
+  width: 82px;
+  height: 81px;
+	animation: pulse 1s infinite;
+	animation-delay: 0s;
+	animation-fill-mode: both;
+	z-index: 5;
+}
+
+.s1_4 {
+	position: absolute;
+  left: 235px;
+  top: 490px;
+  width: 110px;
+  height: 105px;
+	animation: pulse 1s infinite;
+	animation-delay: 0s;
+	animation-fill-mode: both;
+	z-index: 5;
+}
+
+.s1_5 {
+	position: absolute;
+  left: 165px;
+  top: 617px;
+  width: 82px;
+  height: 81px;
+	animation: pulse 1s infinite;
+	animation-delay: 0s;
+	animation-fill-mode: both;
+	z-index: 5;
+}
+
+.takeCover {
+	position: absolute;
+  left: 142px;
+  top: 608px;
+  width: 152px;
+  height: 100px;
+	z-index: 10;
+}
+
+.takeSum {
+	position: absolute;
+  left: 791px;
+  top: 673px;
+  width: 58px;
+  height: 95px;
+	z-index: 10;
+}
+
+.hit_1, .hit_2, .hit_3, .hit_4 {
+  position: absolute;
+  width: 1024px;
+  height: 768px;
+  display: none;
+  z-index: 15;
+}
+
+.hit_pop1 {
+	position: absolute;
+  left: 864px;
+  top: 675px;
+  width: 160px;
+  height: 91px;
+	z-index: 10;
+}
+
+.hit_pop2 {
+	position: absolute;
+  left: 215px;
+  top: 502px;
+  width: 152px;
+  height: 100px;
+	z-index: 10;
+}
+
+.hit_pop3 {
+	position: absolute;
+  left: 277px;
+  top: 396px;
+  width: 152px;
+  height: 100px;
+	z-index: 10;
+}
+
+.hit_pop4 {
+	position: absolute;
+  left: 337px;
+  top: 292px;
+  width: 152px;
+  height: 100px;
+	z-index: 10;
+}
+
+.hit_close1 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	display: none;
+	z-index: 20;
+}
