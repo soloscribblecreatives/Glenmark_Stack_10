@@ -12,8 +12,8 @@ var currentContentNSlide ='';
 //alert("++++++++++++"+custcomslideflag1+"+++++++custcomslideid+++++++"+custcomslideid1);
 	if (typeof(localStorage.getItem("currentcustomslideflag"))!='undefined' &&  localStorage.getItem("currentcustomslideflag") =='true'){
 		var custcomslideid1=parseInt(localStorage.getItem("currentcontentcustomslideId"));
+		
 		//step 2:
-
 		currentContentNSlide = currentContentId+"_"+contentName+"_"+custcomslideid1;
 		//step 2 ends here
 		localStorage.setItem("current",currentContentNSlide);
@@ -99,6 +99,7 @@ function touchHandler(e) {
 		console.log("swipeleft"+localStorage.getItem("currentslide"));
 		localStorage.setItem("previousslide",localStorage.getItem("currentslide"));
 		//step 4 ends here
+
 		//alert("swipeleft");
 		//myconsole("swipeleft");
 		var page_id =  parseInt($("#wrapper").attr("rel"));
@@ -116,6 +117,7 @@ function touchHandler(e) {
 		console.log("swiperight"+localStorage.getItem("currentslide"));
 		localStorage.setItem("previousslide",localStorage.getItem("currentslide"));
 		//step 5 ends here 
+
 			//alert("swiperight");
 		//myconsole("swiperight");
 		var page_id =  parseInt($("#wrapper").attr("rel"));
@@ -134,7 +136,10 @@ function touchHandler(e) {
         //Default is 75px, set to 0 for demo so any distance triggers swipe
          threshold:0
 	});
+
+
 });
+
 
 //step 6:-
 function toCaptureTime(page_id){
@@ -149,39 +154,31 @@ function toCaptureTime(page_id){
 	if(temp == null){
 		
 		if (currentSlideNo!=0){
+
+
+
 			localStorage.setItem(currentContentId+"_"+contentName+"_slideNo_"+currentSlideNo ,startTime);
 
 			//to capture start time of slide in db format
 			var startTimeInDBFormat = currentTimeInDatabaseFormat();
 			//alert(startTimeInDBFormat);
 
+
+
+
 			localStorage.setItem(currentContentId+"_"+contentName+"_StartTime_"+currentSlideNo ,startTimeInDBFormat);
 		}
 }
 else
 {
-
 var existingTime = localStorage.getItem(currentContentId+"_"+contentName+"_slideNo_"+currentSlideNo);
 var newTime = Date.now();
 var newSlideTime = (newTime - existingTime);
-
-// alert(currentSlideNo + " slide time : " + (newSlideTime/1000) ); // time taken to view that particular slide
-
-//to capture end time of slide in db format
 var endTimeInDBFormat = currentTimeInDatabaseFormat();
-//alert(endTimeInDBFormat);/* 
-/* 
-alert('do calculations and update time====else==_EndTime_======'); */
-
-
 var EndTimeNext = localStorage.getItem(currentContentId+"_"+contentName+"_EndTime_"+currentSlideNo);
 console.log("++++++++EndTimeNext++++++++"+EndTimeNext+"++++++currentContentId+++"+currentContentId+"_"+contentName+"_EndTime_"+currentSlideNo);
 if(EndTimeNext == null){
-	//this time for which the slide was viewed
-
-
 localStorage.setItem(currentContentId+"_"+contentName+"_totalTime_slideNo_"+currentSlideNo ,(newSlideTime/1000) );
-
 
 localStorage.setItem(currentContentId+"_"+contentName+"_EndTime_"+currentSlideNo ,endTimeInDBFormat);
 }
@@ -193,12 +190,10 @@ if (typeof(localStorage.getItem('currentslide'))!='undefined' && localStorage.ge
 
 }else{
 
-
 	var nextSlideNo = currentSlideNo + 1 ;
 	
  } 
- 
-	if(nextSlideNo <= 2){//number 3 is number of total slides present
+	if(nextSlideNo <= 1){//number 3 is number of total slides present
 	// alert(nextSlideNo);
 	var tempNext = localStorage.getItem(currentContentId+"_"+contentName+"_slideNo_"+nextSlideNo);
 
@@ -208,38 +203,28 @@ if (typeof(localStorage.getItem('currentslide'))!='undefined' && localStorage.ge
 				var nextSlideStartTime =  Date.now();
 				localStorage.setItem(currentContentId+"_"+contentName+"_slideNo_"+nextSlideNo ,nextSlideStartTime);
 				localStorage.setItem(currentContentId+"_"+contentName+"_totalTime_slideNo_"+nextSlideNo ,0);
-
-
-
 				//to capture start time of next slide in db format
 				var startTimeNextInDBFormat = currentTimeInDatabaseFormat();
-				//alert(startTimeNextInDBFormat);
-				/* 
-				alert("+++else++_StartTime_++++currentSlideNo++++"+nextSlideNo); */
 				localStorage.setItem(currentContentId+"_"+contentName+"_StartTime_"+nextSlideNo ,startTimeNextInDBFormat);
 			}
 		}
 	}
 }
 
+
 }
-//step ends..
+//step 6 ends here ..
 
 
 function go_nav(direction) {
-	//alert("+++++++++go_nav++++++++++"+direction);
-	//alert("+++++++++go_nav++++contentName++++++"+contentName);
-	//go_nav('b');right
-	//go_nav('f');left
+
 	
 //custom slide changes continues here....
 	
 	if (typeof(localStorage.getItem("currentcustomslideflag"))!='undefined' &&   localStorage.getItem("currentcustomslideflag") =='true'){
 
-			
 				var custcomslideid=parseInt(localStorage.getItem("currentcontentcustomslideId"));
 			
-				
 				var page_id =  custcomslideid;
 		}else{
 			
@@ -252,7 +237,7 @@ function go_nav(direction) {
 	//toCaptureTime(page_id);
 	console.log("swipeleft"+localStorage.getItem("currentslide"));
 	localStorage.setItem("previousslide",localStorage.getItem("currentslide"));
-	//step 7 ends here
+	//step 7 ends here 
 //localStorage.setItem(contentName+"_slideNo_"+currentSlideNo ,n);
 var flag=0;
 if(direction == 'b') {
@@ -266,28 +251,18 @@ if(direction == 'b') {
 		window.location = "js-call:" + "1" + ":" + encodeURIComponent(JSON.stringify({query:'NODATA', type:'brandNavigation', callback:'checkLastPgFn'}));
 
 
-	}
+	}else{
+	if(page_id == 1){
+	localStorage.setItem("gotoNextPrevBrand" ,2);//if one than next if 2 than prev
+	window.location = "js-call:" + "1" + ":" + encodeURIComponent(JSON.stringify({query:'NODATA', type:'brandNavigation', callback:'checkLastPgFn'}));
+
+
+}else{
+	localStorage.setItem("gotoNextPrevBrand" ,0);//if one than next if 2 than prev
+}
+}
 	
 //custom slide changes ends here....
-
-	else{
-	if(page_id >= 0){
-		page_id = page_id - 1;
-		//alert(page_id);
-		//console.log(page_id);
-		if(page_id == 0){
-            flag=2;
-        }
-	}
-	 if(flag == 2){
-        localStorage.setItem("gotoNextPrevBrand" ,2);//if one than next if 2 than prev
-        //flag == 0;
-		window.location = "js-call:" + "1" + ":" + encodeURIComponent(JSON.stringify({query:'NODATA', type:'brandNavigation', callback:'checkLastPgFn'}));
-    }else{
-        localStorage.setItem("gotoNextPrevBrand" ,0);
-    }
-
-	}
 }else {
 	
 //custom slide changes continues here....
@@ -300,28 +275,21 @@ if(direction == 'b') {
 	}
 	
 //custom slide changes ends here....
+else{
+	if(page_id == 1){
+	 localStorage.setItem("gotoNextPrevBrand" ,1);//if one than next if 2 than prev
+	 window.location = "js-call:" + "1" + ":" + encodeURIComponent(JSON.stringify({query:'NODATA', type:'brandNavigation', callback:'checkLastPgFn'}));
+}else{
 
-	else{
-	if(page_id <= 2){
-		page_id = page_id + 1;
-		//alert(page_id);
-		if(page_id == 3){
-            flag=1;
-        }
+
+
+	localStorage.setItem("gotoNextPrevBrand" ,0);//if one than next if 2 than prev
+}
 	}
-	    if(flag == 1){
-        localStorage.setItem("gotoNextPrevBrand" ,1);//if one than next if 2 than prev
-         flag == 0;
-		 window.location = "js-call:" + "1" + ":" + encodeURIComponent(JSON.stringify({query:'NODATA', type:'brandNavigation', callback:'checkLastPgFn'}));
-    }else{
-        localStorage.setItem("gotoNextPrevBrand" ,0);
-    }
-
 }
-}
-
 
 //step 8:
+
 currentContentNSlide = currentContentId+"_"+contentName+"_"+page_id;
 //step 8 ends here
 localStorage.setItem("current",currentContentNSlide);
@@ -364,10 +332,7 @@ var pg_content = set_pg_content(page_id);
 }
 
 function set_pg_content(pg_id){
-//step 6:-
-//console.log("++++++++pg_id++++"+pg_id+"+++++++currentslide++++++"+localStorage.getItem("currentslide")+"++++++previousslide++++++"+localStorage.getItem("previousslide"));
-		 //check previous slide id end time capture...@bramha..
-		 //check previous slide id end time capture...@bramha..
+//alert("++++++++++set_pg_content++++++++++"+pg_id);
 	//step 9:
 	if (typeof(localStorage.getItem("previousslide"))!='undefined'){
 		//to checked previous slide has god end time...
@@ -376,20 +341,15 @@ function set_pg_content(pg_id){
 		
 	}
 	toCaptureTime(pg_id);
-
-
 	//step 9 ends here..
-//alert("++++++++++set_pg_content++++++++++"+pg_id);
 $(".reference").removeClass("active");
 currentSlide();
 var selectedContentPath='';
 switch(pg_id){
 	case 1:
-	content='<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="s1_1"><img src="slide1/s1_1.png" width="1024" height="768" alt=""/></div><div class="s1_2"><img src="slide1/s1_2.png"/></div><div class="s1_3"><img src="slide1/s1_3.png"/></div><div class="s1_4"><img src="slide1/s1_4.png"/></div><div class="hit_1"><img src="slide1/pop1.png" width="1024" height="768" alt=""/></div><div class="hit_pop1" onclick="hit_pop1()"></div><div class="hit_2"><img src="slide1/pop2.png" width="1024" height="768" alt=""/></div><div class="hit_pop2" onclick="hit_pop2()"></div><div class="hit_close1" onclick="hit_close1()"></div><div class="takeSum" onclick="takeSum();"></div>';
+	content='<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="s1"><img src="slide1/s1.png" width="1024" height="768" alt=""/></div><div class="s2"><img src="slide1/s2.png"/></div><div class="s3"><img src="slide1/s3.png"/></div><div class="s4"><img src="slide1/s4.png"/></div><div class="s5"><img src="slide1/s5.png"/></div><div class="s6"><img src="slide1/s6.png"/></div><div class="s7"><img src="slide1/s7.png"/></div><div class="s8"><img src="slide1/s8.png"/></div><div class="s9"><img src="slide1/s9.png"/></div><div class="s10"><img src="slide1/s10.png"/></div><div class="s11"><img src="slide1/s11.png"/></div><div class="s12"><img src="slide1/s12.png"/></div><div class="s13"><img src="slide1/s13.png"/></div><div class="s14"><img src="slide1/s14.png"/></div><div class="s15"><img src="slide1/s15.png"/></div><div class="s16"><img src="slide1/s16.png"/></div><div class="s17"><img src="slide1/s17.png"/></div><div class="s18"><img src="slide1/s18.png"/></div><div class="s19"><img src="slide1/s19.png"/></div><div class="s20"><img src="slide1/s20.png"/></div><div class="s21"><img src="slide1/s21.png"/></div><div class="hit1" onclick="hit1()"></div><div class="hit2" onclick="hit2()"></div><div class="hit3" onclick="hit3()"></div><div class="hit4" onclick="hit4()"></div><div class="hit5" onclick="hit5()"></div><div class="hit6" onclick="hit6()"></div><audio id="fanfare" src="slide1/fanfare.mp3" type="audio/mpeg"></audio>';
 	break;
-	case 2:
-	content='<link rel="stylesheet" type="text/css" href="slide2/slide2.css" media="screen"/><div class="s1_1"><img src="slide2/s1_1.png" width="1024" height="768" alt=""/></div><div class="s1_2"><img src="slide2/s1_2.png"/></div><div class="s1_3"><img src="slide2/s1_3.png"/></div><div class="s1_4"><img src="slide2/s1_4.png"/></div><div class="s1_5"><img src="slide2/s1_5.png"/></div><div class="hit_1"><img src="slide2/pop4.png" width="1024" height="768" alt=""/></div><div class="hit_pop1" onclick="hit_pop1()"></div><div class="hit_2"><img src="slide2/pop3.png" width="1024" height="768" alt=""/></div><div class="hit_pop2" onclick="hit_pop2()"></div><div class="hit_3"><img src="slide2/pop2.png" width="1024" height="768" alt=""/></div><div class="hit_pop3" onclick="hit_pop3()"></div><div class="hit_4"><img src="slide2/pop1.png" width="1024" height="768" alt=""/></div><div class="hit_pop4" onclick="hit_pop4()"></div><div class="hit_close1" onclick="hit_close1()"></div><div class="takeCover" onclick="takeCover();"></div>';
-	break;
+
 }
 
 return content;
@@ -403,15 +363,13 @@ function showDiv2() {
    document.getElementById('welcomeDiv2').style.display = "block";
 }
 
-
 function open_page(url,page_id){
 	 // alert(page_id);
 	//step 10:
 	if (typeof(localStorage.getItem("currentslide"))!='undefined'){
 		//to checked previous slide has god end time...
 		var slideid=localStorage.getItem("currentslide");
-		toCaptureTime(slideid);
-		
+		toCaptureTime(slideid);	
 	}
 	
 	// toCaptureTime(page_id);
@@ -463,7 +421,6 @@ function open_page(url,page_id){
     if(currentslide == 2){
 	document.getElementById("click_through").innerHTML='';
 		}
-
 	}
 
 	function checkBtns(refNum){
@@ -520,6 +477,8 @@ function currentTimeInDatabaseFormat(){//to get current time in dd-mm-yyyy hh:mm
 	return duration;
 }
 
+// new js
+
 $(document).ready(function(){
 	$('body').on('click','.touchbtn',function(){
 		$('.right_arrow').trigger( "click" );
@@ -531,62 +490,85 @@ $(document).ready(function(){
 	})
 })
 
-/*--------------------- animation javascript -----------------------*/
-
-function pop_open() {
-	$('.popup').css("display","block");
-	$('.pop_close').css("display","block");
-	$('.pop_open').css("display","none");
-}
-
-function pop_close() {
-	$('.popup').css("display","none");
-	$('.pop_close').css("display","none");
-	$('.pop_open').css("display","block");
-}
 
 /*--------------------- animation javascript -----------------------*/
 
-function hit_pop1() {
-	$('.hit_1').css("display","block");
-	$('.hit_close1').css("display","block");
-	$('.hit_pop1').css("display","none");
+function hit1() {
+	$('.s11').css("display","block");
+	$(".s11").addClass("grow1");
+	$('.hit1').css("display","none");
+	$('.hit2').css("display","block");
 }
 
-function hit_pop2() {
-	$('.hit_2').css("display","block");
-	$('.hit_close1').css("display","block");
-	$('.hit_pop2').css("display","none");
+function hit2() {
+	$(".s11").removeClass("grow1");
+	$(".s11").addClass("grow2");
+	$('.hit2').css("display","none");
+	$('.hit3').css("display","block");
 }
 
-function hit_pop3() {
-	$('.hit_3').css("display","block");
-	$('.hit_close1').css("display","block");
-	$('.hit_pop3').css("display","none");
+function hit3() {
+	$(".s11").removeClass("grow2");
+	$(".s11").addClass("grow3");
+	$('.hit3').css("display","none");
+	$('.s10').css("display","none");
+	$('.s12').css("display","block");
+	$('.s13').css("display","block");
+	$('.s14').css("display","block");
+	$('.s15').css("display","block");
+	$('.hit4').css("display","block");
 }
 
-function hit_pop4() {
-	$('.hit_4').css("display","block");
-	$('.hit_close1').css("display","block");
-	$('.hit_pop4').css("display","none");
+function hit4() {
+	$('.s16').css("display","block");
+	$(".s16").addClass("grow1");
+	$('.hit4').css("display","none");
+	$('.hit5').css("display","block");
 }
 
-function hit_close1() {
-	$('.hit_1').css("display","none");
-	$('.hit_2').css("display","none");
-	$('.hit_3').css("display","none");
-	$('.hit_4').css("display","none");
-	$('.hit_close1').css("display","none");
-	$('.hit_pop1').css("display","block");
-	$('.hit_pop2').css("display","block");
-	$('.hit_pop3').css("display","block");
-	$('.hit_pop4').css("display","block");
+function hit5() {
+	$(".s16").removeClass("grow1");
+	$(".s16").addClass("grow2");
+	$('.hit5').css("display","none");
+	$('.hit6').css("display","block");
 }
 
-function takeCover() {
-		open_page("",1);
+function hit6() {
+	$(".s16").removeClass("grow2");
+	$(".s16").addClass("grow3");
+	$('.hit6').css("display","none");
+	$('.s15').css("display","none");
+	$('.s17').css("display","block");
+	$('.s18').css("display","block");
+	$('.s19').css("display","block");
+	$('.s20').css("display","block");
+	$('.s21').css("display","block");
 }
 
-function takeSum() {
-		open_page("",2);
-}
+/* function hit3() {
+	document.getElementById("unlock").play();
+	$('.hit3').css("display","none");
+	$('.shape8').css("display","block");
+	$('.shape9').css("display","block");
+	setTimeout(function(){
+		document.getElementById("success").play();
+		$('.s1_19').css("display","none");
+		$('.s1_20').css("display","none");
+		$('.s1_21').css("display","block");
+		$('.s1_22').css("display","block");
+	}, 2000);
+	setTimeout(function(){
+		document.getElementById("whoosh").play();
+		$(".wrap7-22").addClass("rotateOut");
+	}, 3500);
+	setTimeout(function(){
+		document.getElementById("fanfare").play();
+		$(".wrap7-22").css("display","none");
+		$('.s1_23').css("display","block");
+		$('.s1_24').css("display","block");
+		$('.s1_25').css("display","block");
+		$('.s1_26').css("display","block");
+		$('.s1_27').css("display","block");
+		$('.s1_28').css("display","block");
+	}, 4000);
+} */
