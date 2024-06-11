@@ -347,7 +347,7 @@ currentSlide();
 var selectedContentPath='';
 switch(pg_id){
 	case 1:
-	content='<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="s1"><img src="slide1/s1.png" width="1024" height="768" alt=""/></div><div class="s2"><img src="slide1/s2.png"/></div><div class="s3"><img src="slide1/s3.png"/></div><div class="s4"><img src="slide1/s4.png"/></div><div class="s5"><img src="slide1/s5.png"/></div><div class="s6"><img src="slide1/s6.png"/></div><div class="s7"><img src="slide1/s7.png"/></div><div class="s8"><img src="slide1/s8.png"/></div><div class="s9"><img src="slide1/s9.png"/></div><div class="s10"><img src="slide1/s10.png"/></div><div class="s11"><img src="slide1/s11.png"/></div><div class="s12"><img src="slide1/s12.png"/></div><div class="s13"><img src="slide1/s13.png"/></div><div class="s14"><img src="slide1/s14.png"/></div><div class="s15"><img src="slide1/s15.png"/></div><div class="s16"><img src="slide1/s16.png"/></div><div class="s17"><img src="slide1/s17.png"/></div><div class="s18"><img src="slide1/s18.png"/></div><div class="s19"><img src="slide1/s19.png"/></div><div class="s20"><img src="slide1/s20.png"/></div><div class="s21"><img src="slide1/s21.png"/></div><div class="hit1" onclick="hit1()"></div><div class="hit2" onclick="hit2()"></div><div class="hit3" onclick="hit3()"></div><div class="hit4" onclick="hit4()"></div><div class="hit5" onclick="hit5()"></div><div class="hit6" onclick="hit6()"></div><audio id="fanfare" src="slide1/fanfare.mp3" type="audio/mpeg"></audio>';
+	content='<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="s1"><img src="slide1/s1.png" width="1024" height="768" alt=""/></div><div class="s2"><img src="slide1/s2.png"/></div><div class="s3"><img src="slide1/s3.png"/></div><div class="s4"><img src="slide1/s4.png"/></div><div class="s5"><img src="slide1/s5.png"/></div><div class="s6"><img src="slide1/s6.png"/></div><div class="s7"><img src="slide1/s7.png"/></div><div class="s8"><img src="slide1/s8.png"/></div><div class="s9"><img src="slide1/s9.png"/></div><div class="s10"><img src="slide1/s10.png"/></div><div class="s11"><img src="slide1/s11.png"/></div><div class="s12"><img src="slide1/s12.png"/></div><div class="s13"><img src="slide1/s13.png"/></div><div class="s14"><img src="slide1/s14.png"/></div><div class="s15"><img src="slide1/s15.png"/></div><div class="s16"><img src="slide1/s16.png"/></div><div class="s17"><img src="slide1/s17.png"/></div><div class="s18"><img src="slide1/s18.png"/></div><div class="s19"><img src="slide1/s19.png"/></div><div class="s20"><img src="slide1/s20.gif"/></div><div class="s21"><img src="slide1/s21.png"/></div><div class="hit1" onclick="hit1()"></div><div class="hit2" onclick="hit2()"></div><div class="hit3" onclick="hit3()"></div><div class="hit4" onclick="hit4()"></div><div class="hit5" onclick="hit5()"></div><div class="hit6" onclick="hit6()"></div><audio id="inflate" src="slide1/inflate.mp3" type="audio/mpeg"></audio><audio id="bloop" src="slide1/bloop.mp3" type="audio/mpeg"></audio><audio id="fanfare" src="slide1/fanfare.mp3" type="audio/mpeg"></audio>';
 	break;
 
 }
@@ -494,20 +494,27 @@ $(document).ready(function(){
 /*--------------------- animation javascript -----------------------*/
 
 function hit1() {
+	document.getElementById("inflate").play();
 	$('.s11').css("display","block");
 	$(".s11").addClass("grow1");
 	$('.hit1').css("display","none");
-	$('.hit2').css("display","block");
+	setTimeout(function(){
+		$('.hit2').css("display","block");
+	}, 1200);
 }
 
 function hit2() {
+	document.getElementById("inflate").play();
 	$(".s11").removeClass("grow1");
 	$(".s11").addClass("grow2");
 	$('.hit2').css("display","none");
-	$('.hit3').css("display","block");
+	setTimeout(function(){
+		$('.hit3').css("display","block");
+	}, 1200);
 }
 
 function hit3() {
+	document.getElementById("inflate").play();
 	$(".s11").removeClass("grow2");
 	$(".s11").addClass("grow3");
 	$('.hit3').css("display","none");
@@ -517,23 +524,33 @@ function hit3() {
 	$('.s14').css("display","block");
 	$('.s15').css("display","block");
 	$('.hit4').css("display","block");
+	setTimeout(function(){
+		document.getElementById("bloop").play();
+	}, 1000);
 }
 
 function hit4() {
+	document.getElementById("inflate").play();
 	$('.s16').css("display","block");
 	$(".s16").addClass("grow1");
 	$('.hit4').css("display","none");
-	$('.hit5').css("display","block");
+	setTimeout(function(){
+		$('.hit5').css("display","block");
+	}, 1200);
 }
 
 function hit5() {
+	document.getElementById("inflate").play();
 	$(".s16").removeClass("grow1");
 	$(".s16").addClass("grow2");
 	$('.hit5').css("display","none");
-	$('.hit6').css("display","block");
+	setTimeout(function(){
+		$('.hit6').css("display","block");
+	}, 1200);
 }
 
 function hit6() {
+	document.getElementById("inflate").play();
 	$(".s16").removeClass("grow2");
 	$(".s16").addClass("grow3");
 	$('.hit6').css("display","none");
@@ -543,6 +560,12 @@ function hit6() {
 	$('.s19').css("display","block");
 	$('.s20').css("display","block");
 	$('.s21').css("display","block");
+	setTimeout(function(){
+		document.getElementById("bloop").play();
+	}, 1000);
+	setTimeout(function(){
+		document.getElementById("fanfare").play();
+	}, 3000);
 }
 
 /* function hit3() {

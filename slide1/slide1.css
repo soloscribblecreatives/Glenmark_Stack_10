@@ -423,7 +423,7 @@
   width: 382px;
   height: 129px;
     animation: zoomInOut 2s;
-    animation-delay: 3.5s;
+    animation-delay: 4s;
     animation-fill-mode: both;
 	display: none;
 	z-index: 10;
@@ -436,7 +436,7 @@
   width: 355px;
   height: 43px;
     animation: fadeInUp 0.5s;
-    animation-delay: 5.5s;
+    animation-delay: 6s;
     animation-fill-mode: both;
 	display: none;
 	z-index: 20;
